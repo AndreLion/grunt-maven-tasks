@@ -226,12 +226,12 @@ module.exports = function(grunt) {
     if (options.globalSettingsXml) {
       // The lack of a space after the -s is critical
       // otherwise the path will be processed by maven incorrectly.
-      args.push('-gs' + options.globalSettingsXml);
+      args.push('--global-settings ' + options.globalSettingsXml);
     }
     if (options.settingsXml) {
       // The lack of a space after the -s is critical
       // otherwise the path will be processed by maven incorrectly.
-      args.push('-s' + options.settingsXml);
+      args.push('--settings ' + options.settingsXml);
     }
     args.push('-Dfile='         + options.file);
     args.push('-DgroupId='      + options.groupId);

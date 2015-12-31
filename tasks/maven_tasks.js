@@ -223,6 +223,16 @@ module.exports = function(grunt) {
     var options = grunt.config('maven.deploy-file.options');
 
     var args = [ 'deploy:deploy-file' ];
+    if (options.globalSettingsXml) {
+      // The lack of a space after the -s is critical
+      // otherwise the path will be processed by maven incorrectly.
+      args.push('-gs' + options.globalSettingsXml);
+    }
+    if (options.settingsXml) {
+      // The lack of a space after the -s is critical
+      // otherwise the path will be processed by maven incorrectly.
+      args.push('-s' + options.settingsXml);
+    }
     args.push('-Dfile='         + options.file);
     args.push('-DgroupId='      + options.groupId);
     args.push('-DartifactId='   + options.artifactId);
@@ -241,11 +251,6 @@ module.exports = function(grunt) {
     args.push('-Durl='          + options.url);
     if (options.repositoryId) {
       args.push('-DrepositoryId=' + options.repositoryId);
-    }
-    if (options.settingsXml) {
-      // The lack of a space after the -s is critical
-      // otherwise the path will be processed by maven incorrectly.
-      args.push('-s' + options.settingsXml);
     }
     // Optional Parameters List : 
     // https://maven.apache.org/plugins/maven-deploy-plugin/deploy-mojo.html
